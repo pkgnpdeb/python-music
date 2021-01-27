@@ -30,10 +30,7 @@ The tools used within this project:
 To set up the project in Linux (Debian based distribution):
 ```
 ----- Installing Python3+ (or latest vesrion of Python) -----
-
-$ sudo apt install python3 
-	OR 
-$ sudo apt install python
+$ sudo apt install python3  || $ sudo apt install python
 $ python3 -V || python -V
 
 ----- Installing Python Package Installer (PIP) -----
@@ -42,23 +39,20 @@ $ sudo apt-get install python-pip (on python2)
 $ sudo apt-get install python3-pip (on python3) 
 
 ----- Installing Virtual Environmrnt -----
-
 $ sudo apt-get install python-venv (on python2)
 $ sudo apt-get install python3-venv (on python3)
 
 ----- Using Virtual Environment -----
-
 $ python -m venv virt (on python2)
 $ python3 -m venv virt (on python3)
 
 ----- Activating Virtual Environment -----
-
 ( The activate script is located at /virt/bin/)
-
 $ source virt/bin/activate
-
 # This will display something like this: 
 (virt) id1it@git$h3ll: ~/BoilerPlate/
+# Deactivating virtual environment 
+(virt) id1it@git$h3ll: ~/BoilerPlate/$ deactivate 
 ``` 
 
 ## Note
