@@ -60,7 +60,7 @@ $ sudo apt-get install python3-tk 	[On Python3]
 
 ----- Installing IDLE -----
 $ sudo apt install idle                [On Python2]
-$ sudo apt-get install idle3           [On  Python3]
+$ sudo apt-get install idle3           [On Python3]
 ``` 
 
 ## Note
