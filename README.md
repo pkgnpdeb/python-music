@@ -32,7 +32,7 @@ To set up the project in Linux (Debian based distribution):
 ##### Will be Updated Soon #####
 ``` 
 
-## Screenshots
+## Screenshots 
 * Screenshots will be updated soon
 
 # LICENSE 
