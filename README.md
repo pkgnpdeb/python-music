@@ -10,9 +10,9 @@
 * [General info](#general-info)
 * [Built with](#built-with)
 * [Tools](#tools)
-* [Setup](#project-setup)
+* [Setup](#setup)
 * [Note](#note)
-* [Screenshots](#project-sscreenshots)
+* [Screenshots](#project-screenshots)
 
 ## General info
 This project is simple desktop music app made with python and tkinter. 
