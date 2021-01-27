@@ -53,6 +53,10 @@ $ source virt/bin/activate
 (virt) id1it@git$h3ll: ~/BoilerPlate/
 # Deactivating virtual environment 
 (virt) id1it@git$h3ll: ~/BoilerPlate/$ deactivate 
+
+----- Installing Tkinter -----
+$ sudo apt-get install python-tk (on python2)
+$ sudo apt-get install python3-tk (on python3)
 ``` 
 
 ## Note
