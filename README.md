@@ -12,7 +12,6 @@
 * [Tools](#tools)
 * [Setup](#setup)
 * [Note](#note)
-* [Screenshots](#project-screenshots)
 
 ## General info
 This project is simple desktop music app made with python and tkinter. 
