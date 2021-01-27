@@ -50,7 +50,7 @@ $ python3 -m venv virt 			[On Python3]
 ( The activate script is located at /virt/bin/)
 $ source virt/bin/activate
 # This will display something like this: 
-(virt) id1it@git$h3ll: ~/BoilerPlate/
+(virt) id10t@git$h3ll: ~/BoilerPlate/
 # Deactivating virtual environment 
 (virt) id1it@git$h3ll: ~/BoilerPlate/$ deactivate 
 
