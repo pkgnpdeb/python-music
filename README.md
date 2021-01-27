@@ -11,6 +11,7 @@
 * [Built with](#built-with)
 * [Tools](#tools)
 * [Setup](#project-setup)
+* [Note](#note)
 * [Screenshots](#project-sscreenshots)
 
 ## General info
