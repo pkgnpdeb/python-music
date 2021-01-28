@@ -64,7 +64,7 @@ $ sudo apt-get install idle3           [On Python3]
 ``` 
 
 ## Note
->You must install virtual environment on project's directory
+>You must install virtual environment on project's directory 
 
 ## Screenshots 
 * Screenshots will be updated soon
