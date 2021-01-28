@@ -10,8 +10,8 @@
 * [General info](#general-info)
 * [Built with](#built-with)
 * [Tools](#tools)
-* [Setup](#project-setup)
-* [Screenshots](#project-sscreenshots)
+* [Setup](#setup)
+* [Note](#note)
 
 ## General info
 This project is simple desktop music app made with python and tkinter. 
@@ -24,7 +24,7 @@ Project is created with:
 ## Tools
 The tools used within this project:
 * IDLE 
-* Text Editor (Vim, Brackets, Atom, Sublime Text, VS Code - any of them would do fine work)
+* Text Editor (Vim, Brackets, Gedit, Atom, Sublime Text, VS Code - any of them would do fine work)
 
 ## Setup
 To set up the project in Linux (Debian based distribution):
@@ -35,28 +35,32 @@ $ python3 -V || python -V
 
 ----- Installing Python Package Installer (PIP) -----
 
-$ sudo apt-get install python-pip (on python2)
-$ sudo apt-get install python3-pip (on python3) 
+$ sudo apt-get install python-pip 	[On Python2]
+$ sudo apt-get install python3-pip 	[On Python3]
 
 ----- Installing Virtual Environmrnt -----
-$ sudo apt-get install python-venv (on python2)
-$ sudo apt-get install python3-venv (on python3)
+$ sudo apt-get install python-venv 	[On Python2]
+$ sudo apt-get install python3-venv 	[On Python3]
 
 ----- Using Virtual Environment -----
-$ python -m venv virt (on python2)
-$ python3 -m venv virt (on python3)
+$ python -m venv virt 			[On Python2]
+$ python3 -m venv virt 			[On Python3]
 
 ----- Activating Virtual Environment -----
 ( The activate script is located at /virt/bin/)
 $ source virt/bin/activate
 # This will display something like this: 
-(virt) id1it@git$h3ll: ~/BoilerPlate/
+(virt) id10t@git$h3ll: ~/BoilerPlate/$
 # Deactivating virtual environment 
 (virt) id1it@git$h3ll: ~/BoilerPlate/$ deactivate 
 
 ----- Installing Tkinter -----
-$ sudo apt-get install python-tk (on python2)
-$ sudo apt-get install python3-tk (on python3)
+$ sudo apt-get install python-tk	[On Python2]
+$ sudo apt-get install python3-tk 	[On Python3]
+
+----- Installing IDLE -----
+$ sudo apt install idle                [On Python2]
+$ sudo apt-get install idle3           [On Python3]
 ``` 
 
 ## Note
