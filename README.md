@@ -67,13 +67,10 @@ $ sudo apt-get install idle3           [On Python3]
 $ sudo apt-get install python-pygame
 and then start the python2 interpreter	[On Python2]
 $ python2
-
 and then try to import pygame as
 $ import pygame
-
 To set python2 as your default interpreter, you can set an alias in your bash_aliases file. To do this, open a terminal and type:
 $ nano ~/.bash_aliases
-
 This may open an empty file, depending upon whether you have set an alias before and then type
 alias python='python2'	
 
