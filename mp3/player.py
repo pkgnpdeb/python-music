@@ -1,4 +1,5 @@
 from tkinter import*
+from tkinter import filedialog
 
 root = Tk()
 
@@ -8,8 +9,21 @@ root.title("MP3 Player")
 # Application Box Size 
 root.geometry("500x400")
 
+# Function for single media
+def add_song():
+    song = filedialog.askopenfilename(initialdir='audio/', title="Choose a single media", filetypes=(("mp3 Files", "*.mp3"), ))
+    # stripping directory structure and song content
+    song = song.replace("/home/n0v1c3/Documents/python-music/mp3/audio/", "")
+    song = song.replace(".mp3", "")
+    
+    playlist_box.insert(END, song)
+    
+# Function for multiple media
+def add_many_songs():
+    pass
+
 # Playlist Widget 
-playlist_box = Listbox(root, bg="black", fg="green", width=60)
+playlist_box = Listbox(root, bg="black", fg="green", width=60, selectbackground="green", selectforeground='black')
 playlist_box.pack(pady=20) 
 
 # Button Images 
@@ -35,5 +49,22 @@ forward_button.grid(row=0, column=1, padx=10)
 play_button.grid(row=0, column=2, padx=10)
 pause_button.grid(row=0, column=3, padx=10)
 stop_button.grid(row=0, column=4, padx=10)
+
+# Song Menu 
+my_menu = Menu(root)
+root.config(menu = my_menu)
+
+# create drop-downs
+add_song_menu = Menu(my_menu, tearoff=0)
+my_menu.add_cascade(label="Add Songs", menu=add_song_menu)
+# add single media dropdown
+add_song_menu.add_command(label="Add Single Media to Playlist", command=add_song)
+# add multiple media dropdown
+add_song_menu.add_command(label="Add Multiple Media to Playlist", command=add_many_songs)
+
+# Temporary Label
+my_label = Label(root, text='')
+my_label.pack(pady=20)
+
 
 root.mainloop()
