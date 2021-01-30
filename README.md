@@ -2,7 +2,7 @@
 
 ## Key Features 
 * Volume Settings
-* Add/Remove Music
+* Add/Remove Music (.mp3 only)
 * Your Library
 * Shuffle play
 
