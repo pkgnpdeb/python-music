@@ -23,7 +23,7 @@ def add_many_songs():
     pass
 
 # Playlist Widget 
-playlist_box = Listbox(root, bg="black", fg="green", width=60, selectbackground="green", selectforeground='black')
+playlist_box = Listbox(root, bg="black", fg="white", width=60, selectbackground="yellow", selectforeground='black')
 playlist_box.pack(pady=20) 
 
 # Button Images 
