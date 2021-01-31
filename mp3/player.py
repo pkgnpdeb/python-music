@@ -15,12 +15,31 @@ def add_song():
     # stripping directory structure and song content
     song = song.replace("/home/n0v1c3/Documents/python-music/mp3/audio/", "")
     song = song.replace(".mp3", "")
-    
+    # Add to end of playlist 	
     playlist_box.insert(END, song)
     
 # Function for multiple media
 def add_many_songs():
-    pass
+	songs = filedialog.askopenfilenames(initialdir='audio/', title="Choose A Song", filetypes=(("mp3 Files", "*.mp3" ), ))
+	
+	# Loop through song list and replace directory structure and mp3 from song name
+	for song in songs:
+		# Strip out directory structure and .mp3 from song title
+		song = song.replace("/home/n0v1c3/Documents/python-music/mp3/audio/", "")
+		song = song.replace(".mp3", "")
+		# Add To End of Playlist
+		playlist_box.insert(END, song)
+
+# Function for deleting Single Media
+def delete_song():
+	# Delete highlighted song drom playlist
+	playlist_box.delete(ANCHOR)
+
+# Function for deleting Multiple Media
+def delete_all_songs():
+	# Delete alll media 
+	playlist_box.delete(0, END)
+
 
 # Playlist Widget 
 playlist_box = Listbox(root, bg="black", fg="white", width=60, selectbackground="yellow", selectforeground='black')
@@ -54,13 +73,21 @@ stop_button.grid(row=0, column=4, padx=10)
 my_menu = Menu(root)
 root.config(menu = my_menu)
 
-# create drop-downs
+# create add-song drop-downs
 add_song_menu = Menu(my_menu, tearoff=0)
 my_menu.add_cascade(label="Add Songs", menu=add_song_menu)
 # add single media dropdown
 add_song_menu.add_command(label="Add Single Media to Playlist", command=add_song)
 # add multiple media dropdown
 add_song_menu.add_command(label="Add Multiple Media to Playlist", command=add_many_songs)
+
+# create delete drop downs
+remove_song_menu = Menu(my_menu, tearoff=0)
+my_menu.add_cascade(label= "Remove Songs", menu=remove_song_menu)
+# remove single media dropdown
+remove_song_menu.add_command(label="Remove Single Media from Playlist", command=delete_song)
+# remove multiple media dropdown
+remove_song_menu.add_command(label="Remove Multiple Media from Playlist", command = delete_all_songs)
 
 # Temporary Label
 my_label = Label(root, text='')
