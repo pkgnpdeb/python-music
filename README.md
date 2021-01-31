@@ -4,7 +4,6 @@
 * Volume Settings
 * Add/Remove Music (.mp3 only)
 * Your Library
-* Shuffle play
 
 ## Table of contents
 * [General info](#general-info)
