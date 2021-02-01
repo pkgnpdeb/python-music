@@ -1,6 +1,9 @@
 from tkinter import*
 from tkinter import filedialog
+import pygame 
+#from pygame import mixer
 
+# Root Window
 root = Tk()
 
 # Application Title
@@ -8,6 +11,12 @@ root.title("MP3 Player")
 
 # Application Box Size 
 root.geometry("500x400")
+
+# Initalize PyGame
+pygame.mixer.init()
+
+# Initalize Mixer 
+# mixer.init()
 
 # Function for single media
 def add_song():
@@ -40,6 +49,18 @@ def delete_all_songs():
 	# Delete alll media 
 	playlist_box.delete(0, END)
 
+# Function for Playing Media 
+def play():
+	# Reconstructuring media with directory structure 
+	song = playlist_box.get(ACTIVE)
+	song = f'/home/n0v1c3/Documents/python-music/mp3/audio/{song}.mp3'
+	
+	#Load media with pygame mixer
+	pygame.mixer.music.load(song)
+	
+	#Play media with pygame mixer
+	pygame.mixer.music.play(loops=0)
+	
 
 # Playlist Widget 
 playlist_box = Listbox(root, bg="black", fg="white", width=60, selectbackground="yellow", selectforeground='black')
@@ -59,7 +80,7 @@ control_frame.pack(pady=20)
 # Buttons 
 back_button = Button(control_frame, image =back_btn_img, borderwidth=0)
 forward_button = Button(control_frame,  image=forward_btn_img, borderwidth=0)
-play_button = Button(control_frame, image=play_btn_img, borderwidth=0)
+play_button = Button(control_frame, image=play_btn_img, borderwidth=0, command=play)
 pause_button = Button(control_frame, image=pause_btn_img, borderwidth=0)
 stop_button = Button(control_frame, image=stop_btn_img, borderwidth=0)
 
