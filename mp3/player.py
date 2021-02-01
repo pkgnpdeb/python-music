@@ -60,7 +60,14 @@ def play():
 	
 	#Play media with pygame mixer
 	pygame.mixer.music.play(loops=0)
+
+# Function to Stop Media 
+def stop():
+	# Stop the song 
+	pygame.mixer.music.stop(loops=0)	
 	
+	# Clear the Playlist Bar
+	playlist_box.selection_clear(ACTIVE)
 
 # Playlist Widget 
 playlist_box = Listbox(root, bg="black", fg="white", width=60, selectbackground="yellow", selectforeground='black')
@@ -82,7 +89,7 @@ back_button = Button(control_frame, image =back_btn_img, borderwidth=0)
 forward_button = Button(control_frame,  image=forward_btn_img, borderwidth=0)
 play_button = Button(control_frame, image=play_btn_img, borderwidth=0, command=play)
 pause_button = Button(control_frame, image=pause_btn_img, borderwidth=0)
-stop_button = Button(control_frame, image=stop_btn_img, borderwidth=0)
+stop_button = Button(control_frame, image=stop_btn_img, borderwidth=0, command=stop)
 
 back_button.grid(row=0, column=0, padx=10)
 forward_button.grid(row=0, column=1, padx=10)
