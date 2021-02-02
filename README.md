@@ -2,7 +2,7 @@
 
 ## Key Features 
 * Volume Settings
-* Add/Remove Music (.mp3 only)
+* Add/Remove Music (.wav only)
 * Your Library 
 
 ## Table of contents
