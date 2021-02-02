@@ -28,7 +28,7 @@ def play_time():
 	status_bar.config(text=f'TIme Elapsed: {converted_current_time}')
 	
 	# create loop to create time every second
-	status_bar.after(1000, play_time)
+	status_bar.after(1000, play_time) 
 
 # Initalize Mixer 
 # mixer.init()
