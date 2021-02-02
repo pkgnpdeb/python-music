@@ -1,13 +1,14 @@
 from tkinter import*
 from tkinter import filedialog
 import pygame 
+import time 
 #from pygame import mixer
 
 # Root Window
 root = Tk()
 
 # Application Title
-root.title("MP3 Player")
+root.title("MUSIC Player")
 
 # Application Box Size 
 root.geometry("500x400")
@@ -15,27 +16,41 @@ root.geometry("500x400")
 # Initalize PyGame
 pygame.mixer.init()
 
+# Function to deal with time 
+def play_time():
+	# grab current song time 
+	current_time = pygame.mixer.music.get_pos() / 1000
+	
+	# converting song time to time format 
+	converted_current_time = time.strftime('%M:%S', time.gmtime(current_time))
+	
+	# add current time to status bar 
+	status_bar.config(text=f'TIme Elapsed: {converted_current_time}')
+	
+	# create loop to create time every second
+	status_bar.after(1000, play_time)
+
 # Initalize Mixer 
 # mixer.init()
 
 # Function for single media
 def add_song():
-    song = filedialog.askopenfilename(initialdir='audio/', title="Choose a single media", filetypes=(("mp3 Files", "*.mp3"), ))
+    song = filedialog.askopenfilename(initialdir='audio/', title="Choose a single media", filetypes=(("WAV Files", "*.wav"), ))
     # stripping directory structure and song content
     song = song.replace("/home/n0v1c3/Documents/python-music/mp3/audio/", "")
-    song = song.replace(".mp3", "")
+    song = song.replace(".wav", "")
     # Add to end of playlist 	
     playlist_box.insert(END, song)
     
 # Function for multiple media
 def add_many_songs():
-	songs = filedialog.askopenfilenames(initialdir='audio/', title="Choose A Song", filetypes=(("mp3 Files", "*.mp3" ), ))
+	songs = filedialog.askopenfilenames(initialdir='audio/', title="Choose A Song", filetypes=(("WAV Files", "*.wav" ), ))
 	
 	# Loop through song list and replace directory structure and mp3 from song name
 	for song in songs:
 		# Strip out directory structure and .mp3 from song title
 		song = song.replace("/home/n0v1c3/Documents/python-music/mp3/audio/", "")
-		song = song.replace(".mp3", "")
+		song = song.replace(".wav", "")
 		# Add To End of Playlist
 		playlist_box.insert(END, song)
 
@@ -53,21 +68,101 @@ def delete_all_songs():
 def play():
 	# Reconstructuring media with directory structure 
 	song = playlist_box.get(ACTIVE)
-	song = f'/home/n0v1c3/Documents/python-music/mp3/audio/{song}.mp3'
-	
+	song = f'/home/n0v1c3/Documents/python-music/mp3/audio/{song}.wav'
+
 	#Load media with pygame mixer
 	pygame.mixer.music.load(song)
-	
+
 	#Play media with pygame mixer
 	pygame.mixer.music.play(loops=0)
+	
+	# Get song time 
+	play_time()
 
 # Function to Stop Media 
 def stop():
 	# Stop the song 
-	pygame.mixer.music.stop(loops=0)	
+	pygame.mixer.music.stop()	
 	
 	# Clear the Playlist Bar
 	playlist_box.selection_clear(ACTIVE)
+
+# Function for Next Media 
+def next_song():
+	# Get next song number 
+	next_one = playlist_box.curselection()
+	my_label.config(text=next_one)
+	# Append one to current song number tuple/list
+	next_one = next_one[0] + 1	
+	
+	# Media title from playlist 
+	song = playlist_box.get(next_one)
+	
+	# Add directory structure to the media  
+	song = f'/home/n0v1c3/Documents/python-music/mp3/audio/{song}.wav'
+	
+	#Load song with pygame mixer
+	pygame.mixer.music.load(song)
+
+	#Play song with pygame mixer
+	pygame.mixer.music.play(loops=0)
+	
+	# Clearing Active Bar in Playlist 
+	playlist_box.selection_clear(0, END)
+	
+	# Move Active Bar to next song 
+	playlist_box.activate(next_one)
+	
+	# Set Active Bar to next song 
+	playlist_box.selection_set(next_one, last=None)
+
+
+# Function to Play Previous Song 
+def previous_song():
+	# Get next song number 
+	next_one = playlist_box.curselection()
+	my_label.config(text=next_one)
+	# Append one to current song number tuple/list
+	next_one = next_one[0] - 1	
+	
+	# Media title from playlist 
+	song = playlist_box.get(next_one)
+	
+	# Add directory structure to the media  
+	song = f'/home/n0v1c3/Documents/python-music/mp3/audio/{song}.wav'
+	
+	#Load song with pygame mixer
+	pygame.mixer.music.load(song)
+
+	#Play song with pygame mixer
+	pygame.mixer.music.play(loops=0)
+	
+	# Clearing Active Bar in Playlist 
+	playlist_box.selection_clear(0, END)
+	
+	# Move Active Bar to next song 
+	playlist_box.activate(next_one)
+	
+	# Set Active Bar to next song 
+	playlist_box.selection_set(next_one, last=None)
+
+# Pause Variable
+global paused  
+paused = False 
+
+# Function to Pause Media 
+def pause(is_paused):
+	global paused 
+	paused = is_paused 
+	
+	if paused: 
+		#unpause
+		pygame.mixer.music.unpause()
+		paused = False  
+	else: 
+		#pause
+		pygame.mixer.music.pause()
+		paused = True
 
 # Playlist Widget 
 playlist_box = Listbox(root, bg="black", fg="white", width=60, selectbackground="yellow", selectforeground='black')
@@ -85,10 +180,10 @@ control_frame = Frame(root)
 control_frame.pack(pady=20)
 
 # Buttons 
-back_button = Button(control_frame, image =back_btn_img, borderwidth=0)
-forward_button = Button(control_frame,  image=forward_btn_img, borderwidth=0)
+back_button = Button(control_frame, image =back_btn_img, borderwidth=0, command=previous_song)
+forward_button = Button(control_frame,  image=forward_btn_img, borderwidth=0, command=next_song)
 play_button = Button(control_frame, image=play_btn_img, borderwidth=0, command=play)
-pause_button = Button(control_frame, image=pause_btn_img, borderwidth=0)
+pause_button = Button(control_frame, image=pause_btn_img, borderwidth=0, command=lambda: pause(paused))
 stop_button = Button(control_frame, image=stop_btn_img, borderwidth=0, command=stop)
 
 back_button.grid(row=0, column=0, padx=10)
@@ -116,6 +211,10 @@ my_menu.add_cascade(label= "Remove Songs", menu=remove_song_menu)
 remove_song_menu.add_command(label="Remove Single Media from Playlist", command=delete_song)
 # remove multiple media dropdown
 remove_song_menu.add_command(label="Remove Multiple Media from Playlist", command = delete_all_songs)
+
+# Create Status Bar 
+status_bar = Label(root, text='', bd=1, relief=GROOVE, anchor=E)
+status_bar.pack(fill=X, side=BOTTOM, ipady=2) 
 
 # Temporary Label
 my_label = Label(root, text='')
