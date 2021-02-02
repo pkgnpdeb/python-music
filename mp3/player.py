@@ -3,6 +3,7 @@ from tkinter import filedialog
 import pygame 
 import time 
 from mutagen.wave import WAVE
+import tkinter.ttk as ttk
 #from pygame import mixer
 
 # Root Window
@@ -12,7 +13,7 @@ root = Tk()
 root.title("MUSIC Player") 
 
 # Application Box Size 
-root.geometry("500x400")
+root.geometry("600x500")
 
 # Initalize PyGame
 pygame.mixer.init()
@@ -181,9 +182,22 @@ def pause(is_paused):
 		pygame.mixer.music.pause()
 		paused = True
 
-# Playlist Widget 
-playlist_box = Listbox(root, bg="black", fg="white", width=60, selectbackground="yellow", selectforeground='black')
-playlist_box.pack(pady=20) 
+
+# Create Main Frame 
+main_frame = Frame(root)
+main_frame.pack(pady=20)
+
+# Playlist Box 
+playlist_box = Listbox(main_frame, bg="black", fg="white", width=60, selectbackground="yellow", selectforeground='black')
+playlist_box.grid(row=0, column=0)
+
+# Create volume slider frame 
+volume_frame = LabelFrame(main_frame, text="Volume")
+volume_frame.grid(row=0, column=1, padx=20)
+
+# Create Volume Slider 
+volume_slider = ttk.Scale(volume_frame, from_=0, to=1, orient=VERTICAL, length=125)
+volume_slider.pack(pady=10)
 
 # Button Images 
 back_btn_img = PhotoImage(file='images/back50.png')
@@ -193,8 +207,8 @@ pause_btn_img = PhotoImage(file='images/pause50.png')
 stop_btn_img = PhotoImage(file='images/stop50.png')
 
 # Buttons Frame Widgets 
-control_frame = Frame(root)
-control_frame.pack(pady=20)
+control_frame = Frame(main_frame)
+control_frame.grid(row=1, column=0, pady=20)
 
 # Buttons 
 back_button = Button(control_frame, image =back_btn_img, borderwidth=0, command=previous_song)
