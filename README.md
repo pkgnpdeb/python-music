@@ -74,7 +74,11 @@ This may open an empty file, depending upon whether you have set an alias before
 alias python='python2'	
 
 $ sudo apt-get build-dep python-pygame [On Python3]
-pip install pygame			
+pip install pygame	
+
+----- Installing Mutagen -----
+$ pip install mutagen			[On Python2]
+$ pip3 install mutagen 			[On Python3]
 
 ``` 
 
