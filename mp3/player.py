@@ -2,6 +2,7 @@ from tkinter import*
 from tkinter import filedialog
 import pygame 
 import time 
+from mutagen.wave import WAVE
 #from pygame import mixer
 
 # Root Window
@@ -24,8 +25,22 @@ def play_time():
 	# converting song time to time format 
 	converted_current_time = time.strftime('%M:%S', time.gmtime(current_time))
 	
+	# Reconstructing song with directory structure 
+	song = playlist_box.get(ACTIVE)
+	song = f'/home/n0v1c3/Documents/python-music/mp3/audio/{song}.wav'
+	
+	# FInd current song length
+	song_mut = WAVE(song)
+	global song_length
+	song_length = song_mut.info.length
+	
+	# Convert to time format 
+	converted_song_length =  time.strftime('%M:%S', time.gmtime(song_length))
+	my_label.config(text=converted_song_length)
+	
 	# add current time to status bar 
-	status_bar.config(text=f'TIme Elapsed: {converted_current_time}')
+	if current_time >= 0:
+		status_bar.config(text=f'TIme Elapsed: {converted_current_time} of {converted_song_length}  ')
 	
 	# create loop to create time every second
 	status_bar.after(1000, play_time) 
@@ -86,6 +101,8 @@ def stop():
 	
 	# Clear the Playlist Bar
 	playlist_box.selection_clear(ACTIVE)
+	
+	status_bar.config(text=f'')
 
 # Function for Next Media 
 def next_song():
