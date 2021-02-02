@@ -8,7 +8,7 @@ import time
 root = Tk()
 
 # Application Title
-root.title("MUSIC Player")
+root.title("MUSIC Player") 
 
 # Application Box Size 
 root.geometry("500x400")
