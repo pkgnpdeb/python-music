@@ -39,6 +39,16 @@ def play_time():
 	converted_song_length =  time.strftime('%M:%S', time.gmtime(song_length))
 	my_label.config(text=converted_song_length)
 	
+	# Set slider length to song length 
+	song_slider.config(to=song_length)
+	my_label.config(text=song_slider.get())
+	
+	# Move slider along time stamp
+	next_time = int(song_slider.get()) + 1
+	
+	# Output new time value to slider 
+	song_slider.config(value=next_time)
+	
 	# add current time to status bar 
 	if current_time >= 0:
 		status_bar.config(text=f'TIme Elapsed: {converted_current_time} of {converted_song_length}  ')
@@ -182,6 +192,13 @@ def pause(is_paused):
 		pygame.mixer.music.pause()
 		paused = True
 
+# Create Volume Function
+def volume(x):
+	pygame.mixer.music.set_volume(volume_slider.get())
+
+# Creare Slider Function 
+def slide(x):
+	pass
 
 # Create Main Frame 
 main_frame = Frame(root)
@@ -196,8 +213,12 @@ volume_frame = LabelFrame(main_frame, text="Volume")
 volume_frame.grid(row=0, column=1, padx=20)
 
 # Create Volume Slider 
-volume_slider = ttk.Scale(volume_frame, from_=0, to=1, orient=VERTICAL, length=125)
+volume_slider = ttk.Scale(volume_frame, from_=0, to=1, orient=VERTICAL, length=125, value=1, command=volume)
 volume_slider.pack(pady=10)
+
+# Create Song Slider 
+song_slider = ttk.Scale(main_frame, from_=0, to=100, orient=HORIZONTAL, length=360, value=0, command=slide)
+song_slider.grid(row=2, column=0, pady=20)
 
 # Button Images 
 back_btn_img = PhotoImage(file='images/back50.png')
