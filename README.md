@@ -85,8 +85,8 @@ $ pip3 install mutagen 			[On Python3]
 ## Note
 >You must install virtual environment on project's directory 
 
-## Screenshots
-* Screenshots will be updated soon
+## Overview
+![song](https://user-images.githubusercontent.com/48232101/106730200-6b560a00-6636-11eb-8894-482e7c13b682.gif)
 
 # LICENSE 
 >You can check out the full license [here](https://github.com/pkgnpdeb/python-music/blob/main/LICENSE)
