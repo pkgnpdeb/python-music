@@ -1,9 +1,9 @@
 # Tkinter and Python -> Music Player App 
 
 ## Key Features 
-* Volume Settings
-* Add/Remove Music (.wav only)
-* Your Library 
+* Volume Slider
+* Song Slider 
+* Add/Remove Music (.wav only) 
 
 ## Table of contents
 * [General info](#general-info)
